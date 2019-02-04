@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".LoginSuccessful">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/buttonbackground"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/navhomebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/home" />
+
+        <Button
+            android:id="@+id/navsearchbtn"
+            android:layout_width="98dp"
+            android:layout_height="fill_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/search" />
+
+        <Button
+            android:id="@+id/navfavbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/inbox" />
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="111dp"
+            android:layout_height="fill_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="logoutClicked"
+            android:text="@string/logout" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
