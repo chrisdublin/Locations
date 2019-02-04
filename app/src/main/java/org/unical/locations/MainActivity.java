@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password) {
-        this.url = this.baseUrl + "login/" + username + "/" + password;
+        this.url = this.baseUrl + "login?userName=" + username + "&password=" + password;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
                 new Response.Listener<JSONObject>() {
                     @Override
