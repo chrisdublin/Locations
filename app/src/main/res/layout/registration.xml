@@ -15,12 +15,12 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/fstTxt"
+        android:id="@+id/nameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
-        android:text="Full Name"
+        android:text="Name"
         android:textColor="@color/colorPrimary" />
     <EditText
         android:id="@+id/txtName"
@@ -30,11 +30,11 @@
         android:ems="10"/>
 
     <TextView
-        android:id="@+id/secTxt"
+        android:id="@+id/surnameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:text="Email"
+        android:text="Surname"
         android:textColor="@color/colorPrimary" />
     <EditText
         android:id="@+id/txtEmail"
@@ -44,25 +44,40 @@
         android:ems="10" />
 
     <TextView
-        android:id="@+id/thirdTxt"
+        android:id="@+id/pass1Txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:text="Password"
         android:textColor="@color/colorPrimary" />
     <EditText
-        android:id="@+id/txtPwd"
+        android:id="@+id/txtPwd1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:inputType="textPassword"
         android:ems="10" />
+    <TextView
+        android:id="@+id/pass2Txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:text="Retype Password"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtPwd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:inputType="textPassword"
+        android:ems="10" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:text="Login" />
+        android:text="Register" />
 
     <TextView
         android:id="@+id/lnkLogin"
