@@ -15,12 +15,15 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 import org.unical.locations.adapter.SpinnerAdapter;
 import org.unical.locations.constants.GlobalConstants;
+import org.unical.locations.model.Countries;
 import org.unical.locations.model.CountryDataObject;
 
 import java.util.Arrays;
@@ -30,7 +33,6 @@ public class LoginSuccessful extends AppCompatActivity {
 
     private Spinner countrySpinner;
     protected List<CountryDataObject> spinnerData;
-    private RequestQueue requestQueue;
     private String url;
 
     @Override
@@ -39,6 +41,7 @@ public class LoginSuccessful extends AppCompatActivity {
         setContentView(R.layout.activity_login_successful);
         Button logout = findViewById(R.id.logoutBtn);
         logout.setMovementMethod(LinkMovementMethod.getInstance());
+        requestJsonObject();
     }
 
     public void logoutClicked(View v) {
@@ -46,56 +49,31 @@ public class LoginSuccessful extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private Response.Listener<JSONObject> buildListener(){
-        return new Response.Listener<JSONObject>() {
+    private void requestJsonObject(){
+        this.url = GlobalConstants.baseURL + "getCountries";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 GsonBuilder builder = new GsonBuilder();
-                Gson mGson = builder.create();
-                spinnerData = Arrays.asList(mGson.fromJson(response.toString(), CountryDataObject.class));
+                Gson gson = builder.create();
+                Countries countries = gson.fromJson(response, Countries.class);
+                spinnerData = countries.getCountries();
                 //display first question to the user
                 if(null != spinnerData){
-                    countrySpinner = (Spinner) findViewById(R.id.countryspinner1);
+                    countrySpinner = findViewById(R.id.countryspinner1);
                     assert countrySpinner != null;
                     countrySpinner.setVisibility(View.VISIBLE);
                     SpinnerAdapter spinnerAdapter = new SpinnerAdapter(LoginSuccessful.this, spinnerData);
                     countrySpinner.setAdapter(spinnerAdapter);
                 }
-
             }
-        };
-    }
-
-    private Response.ErrorListener buildErrorListener(){
-        return new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                errorMessage.setText("Username already used!");
-                Log.e("Volley", error.toString());
-            }
-        };
-    }
-
-    private void fetchCountries() {
-        this.url = GlobalConstants.baseURL + "getCountries";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,  buildListener(),buildErrorListener());
-        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        queue.add(stringRequest);
     }
 
 }
