@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.text.method.LinkMovementMethod;
 import android.widget.Spinner;
@@ -19,7 +20,6 @@ import com.google.gson.GsonBuilder;
 
 import org.unical.locations.adapter.SpinnerAdapter;
 import org.unical.locations.constants.GlobalConstants;
-import org.unical.locations.model.City;
 import org.unical.locations.model.DataObjectList;
 import org.unical.locations.model.DataObject;
 
@@ -29,9 +29,7 @@ public class LoginSuccessful extends AppCompatActivity {
 
     private Spinner countrySpinner;
     private Spinner citySpinner;
-    protected List<DataObject> countrySpinnerData;
-    protected List<DataObject> citySpinnerData;
-    private String url;
+    private Spinner addressSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,13 @@ public class LoginSuccessful extends AppCompatActivity {
         setContentView(R.layout.activity_login_successful);
         Button logout = findViewById(R.id.logoutBtn);
         logout.setMovementMethod(LinkMovementMethod.getInstance());
-        requestCountries();
+        countrySpinner = findViewById(R.id.countryspinner1);
+        citySpinner = findViewById(R.id.cityspinner1);
+        addressSpinner = findViewById(R.id.addressspinner1);
+        setCountrySpinnerListener();
+        setCitySpinnerListener();
+        setAddressSpinnerListener();
+        requestData(countrySpinner,GlobalConstants.baseURL + "getCountries");
     }
 
     public void logoutClicked(View v) {
@@ -47,49 +51,62 @@ public class LoginSuccessful extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void requestCountries(){
-        this.url = GlobalConstants.baseURL + "getCountries";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+    private void setCountrySpinnerListener(){
+        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(String response) {
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson = builder.create();
-                DataObjectList countries = gson.fromJson(response, DataObjectList.class);
-                countrySpinnerData = countries.getCountries();
-                if(null != countrySpinnerData){
-                    countrySpinner = findViewById(R.id.countryspinner1);
-                    assert countrySpinner != null;
-                    countrySpinner.setVisibility(View.VISIBLE);
-                    SpinnerAdapter spinnerAdapter = new SpinnerAdapter(LoginSuccessful.this, countrySpinnerData);
-                    countrySpinner.setAdapter(spinnerAdapter);
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String url = GlobalConstants.baseURL + "getCitiesByCountryName?countryName=" + ((DataObject)countrySpinner.getSelectedItem()).getName();
+                requestData(citySpinner,url);
             }
-        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-        queue.add(stringRequest);
     }
 
-    private void requestCities(){
-        this.url = GlobalConstants.baseURL + "getCitiesByCountryName?countryName=" + countrySpinner.getSelectedItem().toString();
+    private void setCitySpinnerListener(){
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String url = GlobalConstants.baseURL + "getAddressByCityName?cityName=" + ((DataObject)citySpinner.getSelectedItem()).getName();
+                requestData(addressSpinner,url);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void setAddressSpinnerListener(){
+        addressSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String url = GlobalConstants.baseURL + "getCitiesByCountryName?countryName=" + ((DataObject)countrySpinner.getSelectedItem()).getName();
+//                requestData(citySpinner,url);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void requestData(final Spinner spinner, String url){
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
-                City city = gson.fromJson(response, City.class);
-//                citySpinnerData = countries.getCountries();
-                //display first question to the user
-                if(null != citySpinnerData){
-                    citySpinner = findViewById(R.id.countryspinner1);
-                    assert citySpinner != null;
-                    citySpinner.setVisibility(View.VISIBLE);
-                    SpinnerAdapter spinnerAdapter = new SpinnerAdapter(LoginSuccessful.this, citySpinnerData);
-                    citySpinner.setAdapter(spinnerAdapter);
+                DataObjectList data = gson.fromJson(response, DataObjectList.class);
+                List<DataObject> spinnerData = data.getElements();
+                if(null != spinnerData){
+                    assert spinner != null;
+                    spinner.setVisibility(View.VISIBLE);
+                    SpinnerAdapter spinnerAdapter = new SpinnerAdapter(LoginSuccessful.this, spinnerData);
+                    spinner.setAdapter(spinnerAdapter);
                 }
             }
         }, new Response.ErrorListener() {

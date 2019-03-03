@@ -15,11 +15,11 @@ public class DataObjectList implements Serializable{
 		this.elements = elements;
 	}
 
-	public List<DataObject> getCountries() {
+	public List<DataObject> getElements() {
 		return elements;
 	}
 
-	public void setCountries(List<DataObject> countries) {
+	public void setElements(List<DataObject> countries) {
 		this.elements = countries;
 	}
 	
