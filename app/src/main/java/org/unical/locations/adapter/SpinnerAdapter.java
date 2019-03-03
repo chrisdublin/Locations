@@ -8,17 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.unical.locations.R;
-import org.unical.locations.model.CountryDataObject;
+import org.unical.locations.model.DataObject;
 
 import java.util.List;
 
 public class SpinnerAdapter extends BaseAdapter{
 
     private LayoutInflater layoutInflater;
-    private List<CountryDataObject> listData;
+    private List<DataObject> listData;
     private Context context;
 
-    public SpinnerAdapter(Context context, List<CountryDataObject> listData) {
+    public SpinnerAdapter(Context context, List<DataObject> listData) {
         this.context = context;
         layoutInflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.listData = listData;
@@ -31,7 +31,7 @@ public class SpinnerAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return (CountryDataObject)listData.get(position);
+        return (DataObject)listData.get(position);
     }
 
     @Override

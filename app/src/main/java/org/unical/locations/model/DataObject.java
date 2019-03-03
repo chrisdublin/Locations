@@ -2,15 +2,15 @@ package org.unical.locations.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CountryDataObject {
+public class DataObject {
 
     @SerializedName("name")
     private String name;
 
-    public CountryDataObject() {
+    public DataObject() {
     }
 
-    public CountryDataObject(String name) {
+    public DataObject(String name) {
         this.name = name;
     }
 
