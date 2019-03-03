@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Spinner
-        android:id="@+id/countryspinner1"
+        android:id="@+id/countryspinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,10 +82,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryspinner1" />
+        app:layout_constraintTop_toBottomOf="@+id/countryspinner" />
 
     <Spinner
-        android:id="@+id/cityspinner1"
+        android:id="@+id/cityspinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -103,14 +103,35 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityspinner1" />
+        app:layout_constraintTop_toBottomOf="@+id/cityspinner" />
 
     <Spinner
-        android:id="@+id/addressspinner1"
+        android:id="@+id/addressspinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/addresstextView"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/reviewView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Review"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressspinner" />
+
+    <Spinner
+        android:id="@+id/reviewspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/reviewView"
         tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>

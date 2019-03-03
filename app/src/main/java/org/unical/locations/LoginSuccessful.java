@@ -1,5 +1,7 @@
 package org.unical.locations;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class LoginSuccessful extends AppCompatActivity {
     private Spinner countrySpinner;
     private Spinner citySpinner;
     private Spinner addressSpinner;
+    private Spinner reviewSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,10 @@ public class LoginSuccessful extends AppCompatActivity {
         setContentView(R.layout.activity_login_successful);
         Button logout = findViewById(R.id.logoutBtn);
         logout.setMovementMethod(LinkMovementMethod.getInstance());
-        countrySpinner = findViewById(R.id.countryspinner1);
-        citySpinner = findViewById(R.id.cityspinner1);
-        addressSpinner = findViewById(R.id.addressspinner1);
+        countrySpinner = findViewById(R.id.countryspinner);
+        citySpinner = findViewById(R.id.cityspinner);
+        addressSpinner = findViewById(R.id.addressspinner);
+        reviewSpinner = findViewById(R.id.reviewspinner);
         setCountrySpinnerListener();
         setCitySpinnerListener();
         setAddressSpinnerListener();
@@ -83,14 +87,39 @@ public class LoginSuccessful extends AppCompatActivity {
         addressSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String url = GlobalConstants.baseURL + "getCitiesByCountryName?countryName=" + ((DataObject)countrySpinner.getSelectedItem()).getName();
-//                requestData(citySpinner,url);
+                String url = GlobalConstants.baseURL + "getReviewsByAddressId?addressId=" + ((DataObject)addressSpinner.getSelectedItem()).getId();
+                requestData(reviewSpinner,url);
+                setReviewSpinnerListener();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
+    }
+
+    private void setReviewSpinnerListener(){
+        reviewSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog alertDialog = new AlertDialog.Builder(LoginSuccessful.this).create();
+                alertDialog.setTitle(((DataObject)reviewSpinner.getSelectedItem()).getName());
+                alertDialog.setMessage(((DataObject)reviewSpinner.getSelectedItem()).getReviewContent());
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void requestData(final Spinner spinner, String url){

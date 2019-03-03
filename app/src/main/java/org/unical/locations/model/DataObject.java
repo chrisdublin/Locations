@@ -7,13 +7,23 @@ public class DataObject {
     @SerializedName("name")
     private String name;
     private int id;
+    private String reviewContent;
 
     public DataObject() {
     }
 
-    public DataObject(String name, int id) {
+    public DataObject(String name, int id, String reviewContent) {
         this.name = name;
         this.id = id;
+        this.reviewContent = reviewContent;
+    }
+
+    public String getReviewContent() {
+        return reviewContent;
+    }
+
+    public void setReviewContent(String reviewContent) {
+        this.reviewContent = reviewContent;
     }
 
     public int getId() {
