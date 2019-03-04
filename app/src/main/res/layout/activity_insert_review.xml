@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/reviewTitleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/title"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtReviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:inputType="text"
+        android:ems="10"/>
+
+    <TextView
+        android:id="@+id/countryTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/country"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:inputType="text"
+        android:ems="10"/>
+
+    <TextView
+        android:id="@+id/cityTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/city"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:ems="10"/>
+
+    <TextView
+        android:id="@+id/streetNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/street"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtStreetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/zipCodeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/zipcode"
+        android:textColor="@color/colorPrimary" />
+    <EditText
+        android:id="@+id/txtZipCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/reviewTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/review"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/txtReview"
+        android:layout_width="215dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="100dp"
+        android:gravity="top"
+        android:hint="Write your review here"
+        android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+        android:maxLines="6"
+        android:minLines="3"
+        android:textColor="@color/colorPrimary" />
+
+    <CheckBox
+        android:id="@+id/safearea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/safearea"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:onClick="submitClicked"
+        android:text="@string/submit" />
+
+</LinearLayout>
