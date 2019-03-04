@@ -55,6 +55,11 @@ public class LoginSuccessful extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void reviewClicked(View v) {
+        Intent intent = new Intent(LoginSuccessful.this, InsertReview.class);
+        startActivity(intent);
+    }
+
     private void setCountrySpinnerListener(){
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
