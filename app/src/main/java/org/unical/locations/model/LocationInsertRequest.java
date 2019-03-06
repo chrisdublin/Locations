@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class LocationInsertRequest implements Serializable{
 
 	private String countryname;
-	private String countryDescrition;
+	private String countryDescrition = " ";
 	private String cityname;
-	private String cityDescrition;
-	private String buildingname;
+	private String cityDescrition = " ";
+	private String buildingname = " ";
 	private String streetname;
 	private String review;
 	private int zipcode;
 	private boolean savearea;
-	private String addressDescrition;
+	private String addressDescrition = " ";
 	private String reveiwTitle;
 	private int userId;
 

@@ -106,7 +106,7 @@ public class InsertReview extends AppCompatActivity {
         JSONObject jsonObject = null;
         try {
             LocationInsertRequest locationInsertRequest = new LocationInsertRequest(country.getText().toString(), city.getText().toString(), street.getText().toString(), review.getText().toString(), Integer.parseInt(zipCode.getText().toString()),
-                    isSaveArea(), review.getText().toString(), Integer.parseInt("1"));
+                    isSaveArea(), title.getText().toString(), Integer.parseInt("1"));
             Gson gson = new Gson();
             String json = gson.toJson(locationInsertRequest);
             jsonObject = new JSONObject(json);
