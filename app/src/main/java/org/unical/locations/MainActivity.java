@@ -23,10 +23,10 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button loginBtn;
-    EditText userNameTxt;
-    EditText passwordTxt;
-    TextView errorMessage;
+    private Button loginBtn;
+    private EditText userNameTxt;
+    private EditText passwordTxt;
+    private TextView errorMessage;
 
 
     RequestQueue requestQueue;
